@@ -1,9 +1,6 @@
 import requests
 import re
-<<<<<<< HEAD
-=======
 from datetime import datetime
->>>>>>> 56b1257 (Adding logic for "CHANGED" category)
 
 def fetch_html(url):
     """Fetch HTML content from a given URL."""
@@ -31,4 +28,3 @@ def extract_timestamp(pkg_name):
         return f"{match.group(1)}-{match.group(2)}-{match.group(3)}"
 
     return datetime.now().strftime("%Y-%m-%d")  # Default to current date if timestamp isn't found
->>>>>>> 56b1257 (Adding logic for "CHANGED" category)

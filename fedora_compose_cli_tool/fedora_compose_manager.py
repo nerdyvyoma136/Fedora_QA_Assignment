@@ -1,10 +1,6 @@
 import json
 import os
-<<<<<<< HEAD
-from .utils import fetch_html, extract_compose_dates
-=======
 from .utils import fetch_html, extract_compose_dates, extract_timestamp
->>>>>>> 56b1257 (Adding logic for "CHANGED" category)
 from .config import BASE_URL, ARCHITECTURE
 from .nevra_parser import parse
 
@@ -35,14 +31,6 @@ class FedoraComposeManager:
 
     @staticmethod
     def compare_composes(old_date, new_date):
-<<<<<<< HEAD
-        """Compare two Fedora Rawhide composes and return added, removed, changed packages."""
-        old_rpms = FedoraComposeManager.fetch_rpms(old_date)
-        new_rpms = FedoraComposeManager.fetch_rpms(new_date)
-
-        added = new_rpms - old_rpms
-        removed = old_rpms - new_rpms
-=======
         """Compare two Fedora Rawhide composes and return added, removed, changed packages with timestamps."""
     
         old_rpms = FedoraComposeManager.fetch_rpms(old_date)
@@ -50,20 +38,13 @@ class FedoraComposeManager:
 
         added = {pkg: extract_timestamp(pkg) for pkg in new_rpms - old_rpms}
         removed = {pkg: extract_timestamp(pkg) for pkg in old_rpms - new_rpms}
->>>>>>> 56b1257 (Adding logic for "CHANGED" category)
         changed = {}
 
         for pkg in old_rpms & new_rpms:
             old_name, old_version = parse(pkg)
             new_name, new_version = parse(pkg)
 
-            if old_version != new_version:
-<<<<<<< HEAD
-                changed[old_name] = (old_version, new_version)
+        if old_version != new_version:
+            changed[old_name] = (old_version, new_version, extract_timestamp(pkg))
 
-        return added, removed, changed
-=======
-                changed[old_name] = (old_version, new_version, extract_timestamp(pkg))
-
-        return added, removed, changed
->>>>>>> 56b1257 (Adding logic for "CHANGED" category)
+    return added, removed, changed
