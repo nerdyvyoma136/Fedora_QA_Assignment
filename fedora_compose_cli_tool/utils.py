@@ -14,9 +14,6 @@ def fetch_html(url):
 
 def extract_compose_dates(html):
     """Extract Fedora Rawhide compose dates from HTML."""
-<<<<<<< HEAD
-    return sorted(re.findall(r'Fedora-Rawhide-(\d{8})\.n\.\d+/', html), reverse=True)
-=======
     return sorted(re.findall(r'Fedora-Rawhide-(\d{8})\.n\.\d+/', html), reverse=True)
 
 # Utility function to extract timestamps
