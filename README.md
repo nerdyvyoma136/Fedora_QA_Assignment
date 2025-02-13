@@ -67,11 +67,71 @@ It is used by other modules in the Fedora Rawhide Compose Diff Tool.<br>
 - Access to Fedora Rawhide composes.
 
 ## Installation
-
+```bash
+git clone https://github.com/nerdyvyoma136/Fedora_QA_Assignment.git
+cd Fedora_QA_Assignment
+```
 
 ## Usage
-To use the project...
+This tool can be executed through the terminal with two primary commands:<br>
+
+**List Composes**: Lists Fedora Rawhide composes from the past X days.
+```bash
+python main.py list <days>
+```
+**Compare Two Composes (Diff)**: Compares two Fedora Rawhide composes and outputs added, removed, and changed packages.
+```bash
+python main.py diff <old_date> <new_date>
+```
 
 ## Examples
-Here are some usage examples...
-    
+1. List Fedora Rawhide composes from the last 7 days:
+```bash
+python main.py list 7
+```
+**Output**:
+```bash
+20250213
+20250212
+20250211
+20250210
+20250209
+20250208
+20250207
+```
+2. Compare the composes from 2024-02-07 and 2024-02-13:
+```bash
+python main.py diff 20240207 20240213
+```
+**Output**:
+```bash
+=== REMOVED PACKAGES ===
+[20250213] phpunit10 REMOVED (0:10.5.44-1)
+[20250213] astromenace REMOVED (0:1.4.2-12)
+[20250213] kdepim-runtime REMOVED (1:24.12.1-2)
+[20250213] python-twilio REMOVED (0:9.4.4-1)
+[20250213] ceph REMOVED (2:19.2.0-10)
+[20250213] dragon REMOVED (0:24.12.1-2)
+[20250213] extra-cmake-modules REMOVED (0:6.10.0-2)
+[20250213] python3.10 REMOVED (0:3.10.16-4)
+[20250213] ocaml-ppx-js-style REMOVED (0:0.17.0-5)
+[20250213] plasma-thunderbolt REMOVED (0:6.2.90-2)
+.
+.
+.
+[20250213] kscreen REMOVED (1:6.2.90-2)
+
+=== ADDED PACKAGES ===
+[20250213] calindori ADDED (0:24.12.2-1)
+[20250213] kdialog ADDED (0:24.12.2-1)
+[20250213] nautilus ADDED (0:47.2-3)
+[20250213] filelight ADDED (1:24.12.2-1)
+[20250213] libkscreen ADDED (0:6.3.0-1)
+.
+.
+.
+[20250207] fedora-appstream-metadata ADDED (0:20250207-1)
+
+=== CHANGED PACKAGES ===
+```
+
