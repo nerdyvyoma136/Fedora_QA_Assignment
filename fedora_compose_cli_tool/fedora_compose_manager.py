@@ -47,4 +47,4 @@ class FedoraComposeManager:
         if old_version != new_version:
             changed[old_name] = (old_version, new_version, extract_timestamp(pkg))
 
-    return added, removed, changed
+        return added, removed, changed
