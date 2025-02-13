@@ -13,6 +13,7 @@ This tool helps developers and Fedora maintainers track changes between Rawhide 
 
 # Table of Contents
 [Files Included](#files-included)<br>
+[Prerequisites](#prerequisites)<br>
 [Installation](#installation)<br>
 [Usage](#usage)<br>
 [Examples](#examples)<br>
