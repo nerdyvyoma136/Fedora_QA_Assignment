@@ -8,11 +8,13 @@ class FedoraComposeManager:
 
     @staticmethod
     def list_composes(days=7):
-        """List Fedora Rawhide composes from the past X days."""
+        """List unique Fedora Rawhide compose dates from the past X days."""
         html = fetch_html(BASE_URL)
         if not html:
             return []
-        return extract_compose_dates(html)[:days]
+
+        unique_dates = sorted(set(extract_compose_dates(html)), reverse=True)
+        return unique_dates[:days]  # Get only the required number of unique dates
 
     @staticmethod
     def fetch_rpms(compose_date):
