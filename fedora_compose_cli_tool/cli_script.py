@@ -15,7 +15,12 @@ class CLI:
 
     @staticmethod
     def compare_composes(old_date, new_date):
-        """Compare two Fedora Rawhide composes and output package changes separately in descending order."""
+        """Compare two Fedora Rawhide composes and output package changes."""
+
+        # Convert old_date and new_date to integers
+        old_date = int(old_date)
+        new_date = int(new_date)
+
         added, removed, changed = FedoraComposeManager.compare_composes(old_date, new_date)
 
         print("\n=== REMOVED PACKAGES ===")

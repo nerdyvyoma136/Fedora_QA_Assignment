@@ -22,6 +22,6 @@ def extract_timestamp(pkg_name):
     
     match = re.search(r"(\d{4})(\d{2})(\d{2})", pkg_name)
     if match:
-        return f"{match.group(1)}-{match.group(2)}-{match.group(3)}"
+        return int(f"{match.group(1)}{match.group(2)}{match.group(3)}")  # Return YYYYMMDD as an integer
 
-    return datetime.now().strftime("%Y-%m-%d")  # Default to current date if timestamp isn't found
+    return int(datetime.now().strftime("%Y%m%d"))  # Default to current date as integer
