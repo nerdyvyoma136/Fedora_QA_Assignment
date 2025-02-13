@@ -22,7 +22,7 @@ This tool helps developers and Fedora maintainers track changes between Rawhide 
   - **CLI** from *cli_script.py*
   - **FedoraComposeManager** from *fedora_compose_manager.py*
   - **parse** from *nevra_parser.py*
-  - **BASE_URL** and **ARCHITECTURE* from *config.py*
+  - **BASE_URL** and **ARCHITECTURE** from *config.py*
 - `cli_script.py`: This is the entry point for the CLI tool. It defines the command-line interface and the functionality for different commands such as ***list*** and ***diff*** (compare).
   It uses the **argparse** library to parse command-line arguments and routes them to the appropriate methods.
 
