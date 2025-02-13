@@ -33,20 +33,21 @@ class FedoraComposeManager:
 
     @staticmethod
     def compare_composes(old_date, new_date):
-        """Compare two Fedora Rawhide composes and return added, removed, changed packages with timestamps."""
-    
+        """Compare two Fedora Rawhide composes and return added, removed, changed packages, filtered by timestamps."""
         old_rpms = FedoraComposeManager.fetch_rpms(old_date)
         new_rpms = FedoraComposeManager.fetch_rpms(new_date)
 
-        added = {pkg: extract_timestamp(pkg) for pkg in new_rpms - old_rpms}
-        removed = {pkg: extract_timestamp(pkg) for pkg in old_rpms - new_rpms}
+        added = {pkg for pkg in (new_rpms - old_rpms) if extract_timestamp(pkg) >= old_date}
+        removed = {pkg for pkg in (old_rpms - new_rpms) if extract_timestamp(pkg) >= old_date}
         changed = {}
 
         for pkg in old_rpms & new_rpms:
             old_name, old_version = parse(pkg)
             new_name, new_version = parse(pkg)
 
-        if old_version != new_version:
-            changed[old_name] = (old_version, new_version, extract_timestamp(pkg))
+            if old_version != new_version:
+                timestamp = extract_timestamp(pkg)
+                if timestamp >= old_date:
+                    changed[old_name] = (old_version, new_version)
 
         return added, removed, changed
